@@ -1,10 +1,11 @@
-const express = require('express')
-const app = express()
+const app = require('express')()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
 
-app.get('*', (req, res, next) => {
-  res.send('hello')
-})
+server.listen(3001)
 
-app.listen(3001, (req, res, next) => {
-  console.log('listening on port 3001')
+io.on('connection', (socket) => {
+  socket.on('message', data => {
+    io.emit('message', data)
+  })
 })
