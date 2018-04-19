@@ -6,6 +6,7 @@ export class LeftBar extends Component {
     return (
       <div className="leftbar-wrapper">
         <p>left bar</p>
+        <a href="/registration">Register here</a>
       </div>
     )
   }

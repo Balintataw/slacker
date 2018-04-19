@@ -1,0 +1,55 @@
+.master-wrapper {
+    display: flex;
+    /* justify-content: space-around; */
+    width: 100%;
+    /* width: 800px; */
+    box-sizing: border-box;
+    
+  }
+  
+  .feed-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height: 800px; */
+    width: 70%;
+  }
+  
+  .messages {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 800px;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    border: 1px solid black;
+  }
+  
+  .test {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+  
+  .test2 {
+    display: flex;
+  }
+  
+  .message-container {
+    display: flex;
+  }
+  
+  .message-container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 15px;
+  }
+  
+  .message-right {
+    width: 100%;
+  }
+  
+  .msg-content {
+  }
+  
