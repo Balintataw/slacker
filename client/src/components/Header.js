@@ -5,7 +5,11 @@ export class Header extends Component {
   render() {
     return (
       <div className="header-wrapper">
-        <p>header bar</p>
+        <span>Date or Room name</span>
+        <div className="user-info">
+          <span>User Name</span>
+          <img src="http://placehold.it/30/30" id="profile-image" alt=""/>
+        </div>
       </div>
     )
   }

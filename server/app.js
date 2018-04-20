@@ -6,7 +6,7 @@ const path = require('path')
 const io = require('socket.io')(server)
 const config = require('./config/default.json')
 const indexRouter = require('./routes/index');
-const session = require('express-session')
+// const session = require('express-session')
 // const logger = require('morgan');
 
 server.listen(3001)
@@ -25,12 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-  secret: config.session.secret,
-  resave: true,
-  saveUninitialized: false,
-  cookie: {secure: false}
-}))
+// app.use(session({
+//   secret: config.session.secret,
+//   resave: true,
+//   saveUninitialized: false,
+//   cookie: {secure: false}
+// }))
 
 app.use('/', indexRouter);
 

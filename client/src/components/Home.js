@@ -5,11 +5,19 @@ import {LeftBar} from './LeftBar'
 import {RightBar} from './RightBar'
 import {Header} from './Header'
 import 'normalize.css/normalize.css'
-import './feedpage.css'
+import './home.css'
 
-export class FeedPage extends Component {
+export class Home extends Component {
+    state = {
+        rendering: true
+    }
     static defaultProps = {
         messages: []
+    }
+    handleRenderChange = (renderState) => {
+        this.setState({
+            rendering: renderState
+        })
     }
   render() {
     return (
@@ -21,20 +29,20 @@ export class FeedPage extends Component {
                 <div className="feed-wrapper">
                     <div className="messages">
                         {this.props.messages.map((msg, i) => {
-                            return  <div key={'siopao'+i}>
-                                        <div className="message-container">
-                                            <img src="http://placehold.it/50/50" />
-                                            <div className="message-right">
-                                                <h3>name of you</h3>
-                                                <p className="msg-content">{msg.message}</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                            return  <div className="message-container" key={'siopao'+i}>
+                            <img src="http://placehold.it/50/50" />
+                            <div className="message-right">
+                                <h3>name of you</h3>
+                                <p className="msg-content">{msg.message}</p>
+                            </div>
+                        </div>
+                                        
+                                    
                         })}
                     </div>
                 <AddMessageForm />
                 </div>
-                <RightBar />
+                {this.state.rendering ? <RightBar sendRenderState={this.handleRenderChange}/> : ''}
                 </div>
             </div>
         
@@ -44,9 +52,10 @@ export class FeedPage extends Component {
 };
 
 function mapStateToProps(state) {
+    console.log('home state')
     return {
         messages: state.messages
     }
 }
 
-export default connect(mapStateToProps)(FeedPage)
+export default connect(mapStateToProps)(Home)
