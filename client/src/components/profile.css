@@ -1,0 +1,9 @@
+.profile-container {
+    display: flex;
+    height: 800px;
+}
+
+.profile-user-info {
+    display: flex;
+    flex-direction: column;
+}

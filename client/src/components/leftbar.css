@@ -6,6 +6,10 @@
     background-color: rgb(17, 102, 17);
 }
 
+.leftbar-wrapper a {
+    text-decoration: none;
+}
+
 .logo {
     color: rgb(220, 220, 220);
 }
