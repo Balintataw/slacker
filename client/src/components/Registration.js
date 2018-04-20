@@ -17,7 +17,7 @@ export class Registration extends Component {
     return (
       <div className="reg-page-wrapper">
         <h1>Register:</h1>
-        <div className="form-container">
+        <div className="form-container-register">
           <form action="/registration" method="POST">
             <input onChange={this.handleChange} type="text" name="username" placeholder="Username" value={this.state.username} />
             <input onChange={this.handleChange} type="email" name="email" placeholder="Email" value={this.state.email}/>

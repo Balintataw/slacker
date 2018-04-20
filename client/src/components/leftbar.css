@@ -5,3 +5,14 @@
     width: 20%;
     background-color: rgb(17, 102, 17);
 }
+
+.logo {
+    color: rgb(220, 220, 220);
+}
+
+.logo::first-letter {
+    color: greenyellow;
+    font-size: 40px;
+    padding: 0 5px 0 5px;
+    background: black;
+}

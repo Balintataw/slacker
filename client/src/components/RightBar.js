@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import './rightbar.css'
 
 export class RightBar extends Component {
@@ -14,8 +15,8 @@ export class RightBar extends Component {
   render() {
     return (
       <div className="rightbar-wrapper">
-        <p>right bar</p>
-        <button type="submit" onClick={this.handleChange}>X</button>
+        <Link to="/profile" >temp profile link</Link>
+        <button type="submit" id="close-btn" onClick={this.handleChange}>X</button>
       </div>
     )
   }

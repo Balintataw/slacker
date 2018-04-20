@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {sendMessage} from '../actions/actions'
 import TextArea from "react-textarea-autosize"
+
+import 'font-awesome/css/font-awesome.min.css'
+import EmojiPicker from 'emoji-picker-react'
+
 import 'normalize.css/normalize.css'
 import './AddMessageForm.css'
 
 export class AddMessageForm extends Component {
     state = {
-        message: ''
+        message: '',
+        renderEmoji: false
     }
     handleChange = (e) => {
         this.setState({
@@ -27,14 +32,28 @@ export class AddMessageForm extends Component {
             message: ''
         })
     }
+    toggleEmoji = (e) => {
+        console.log(e.target)
+        this.setState({
+            renderEmoji: !this.state.renderEmoji
+        })
+    }
+    myCallback = (code, data) => {
+        console.log(code)
+        console.log(data)
+    }
     render() {
         return (
             <div className="form-input-container">
                 <form onSubmit={this.handleSubmit} id="message-form" ref={el => this.myFormRef = el}>
                 <div className="btn-input">
                     {/* <input type="text" name="message" placeholder="Message" value={this.state.message} onChange={this.handleChange} /> */}
-                    <TextArea name="message" placeholder="Message" value={this.state.message} onChange={this.handleChange} onKeyDown={this.handleKeypress} id="textarea" style="height: 40px"/>
-                    <button type="submit">Send</button>
+                    <TextArea name="message" placeholder="Message" value={this.state.message} onChange={this.handleChange} onKeyDown={this.handleKeypress} id="textarea" />
+                    <button type="submit" id="btn-hidden"></button>
+                        <div className="dropdown-content">
+                            {this.state.renderEmoji ? <EmojiPicker onEmojiClick={this.myCallback}/> : ''}
+                        </div>
+                    <button type="button" id="btn-emoji" onClick={this.toggleEmoji}><i className="fa fa-smile-o"></i></button>
                 </div>
                 </form>
             </div>
