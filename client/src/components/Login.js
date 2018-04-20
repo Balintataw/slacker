@@ -17,8 +17,8 @@ export class Login extends Component {
     return (
       <div className="login-page-wrapper">
         <h1>Login:</h1>
-        <div className="form-container">
-          <form action="/login" method="POST">
+        <div className="log-form-container">
+          <form action="/login" method="POST" id="log-page-form">
             <input onChange={this.handleChange} type="text" name="username" placeholder="Username" value={this.state.username} />
             {/* <input onChange={this.handleChange} type="email" name="email" placeholder="Email" value={this.state.email}/> */}
             <input onChange={this.handleChange} type="password" name="password" placeholder="Password" value={this.state.password}/>
