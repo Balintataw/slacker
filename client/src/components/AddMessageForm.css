@@ -21,7 +21,7 @@
     position: relative;
     width: 100%;
     height: auto;
-    /* border: 1px solid rgb(169, 169, 169); */
+    border: 1px solid rgb(169, 169, 169);
     border-radius: 12px;
 }
 
@@ -30,7 +30,7 @@
     min-height: 30px !important;
     /* border-top-left-radius: 8px; */
     /* border-bottom-left-radius: 8px; */
-    border-radius: 7px;
+    border-radius: 12px;
     outline: none;
     border: none;
     padding: 7px 50px 7px 10px;

@@ -1,7 +1,7 @@
 .reg-page-wrapper {
     display: flex;
     /* flex-direction: column; */
-    justify-content: space-around;
+    /* justify-content: space-around; */
     /* align-items: center; */
     height: 800px;
 }
@@ -10,15 +10,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
     /* justify-content: space-around; */
-    width: 40%;
+    width: 75%;
+    padding-left: 80px;
+    background-color: rgb(225, 225, 225);
 }
 
 #reg-page-form {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    position: relative;
+    width: 60%;
     border: 1px solid black;
     border-radius: 8px;
     background-color: rgb(62, 165, 62);
@@ -40,9 +42,9 @@
 
 #log-btn {
     position: absolute;
-    top: 243px;
+    top: 163px;
     right: 0px;
-    width: 80px;
+    width: 100px;
     border-radius: 0;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
