@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const instance = axios.create()
 
-instance.tokenPath = '/token'
+instance.tokenPath = '/login'
 instance.registerPath = '/registration'
 instance.token = window.localStorage.getItem('token') || null
 
@@ -35,6 +35,7 @@ instance.getRegisterPath = function() {
 }
 
 instance.login = function (username, password) {
+  console.log('in api.js login')
   return this.post(this.getTokenPath(), {username, password})
     .then(resp => {
       window.localStorage.setItem('token', resp.data.token)
@@ -57,12 +58,15 @@ instance.registration = function (username, password) {
   console.log('in api.js registration')
   return this.post(this.getRegisterPath(), {username, password})
     .then(resp => {
+      console.log('in api.js registration post')
+      console.log('resp.data.token ' + resp.data.token)
       window.localStorage.setItem('token', resp.data.token)
+      console.log(resp) // here headers.authorization returning undefined
       this.registerInterceptor = this.interceptors.request.use(config => {
         config.headers['Authorization'] = 'Bearer ' + resp.data.token
         return config
       })
-    })
+  })
 }
 
 export default instance

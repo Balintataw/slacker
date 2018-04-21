@@ -30,7 +30,7 @@ export class Home extends Component {
                     <div className="messages">
                         {this.props.messages.map((msg, i) => {
                             return  <div className="message-container" key={'siopao'+i}>
-                            <img src="http://placehold.it/50/50" />
+                            <img src="http://placehold.it/50/50" alt=""/>
                             <div className="message-right">
                                 <h3>name of you</h3>
                                 <p className="msg-content">{msg.message}</p>
@@ -52,7 +52,6 @@ export class Home extends Component {
 };
 
 function mapStateToProps(state) {
-    console.log('home state')
     return {
         messages: state.messages
     }

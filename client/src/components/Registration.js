@@ -30,9 +30,9 @@ export class Registration extends Component {
           <form onSubmit={this.handleSubmit} id="reg-page-form">
             <input onChange={this.handleChange} type="text" name="username" placeholder="Username" value={this.state.username} />
             <input onChange={this.handleChange} type="email" name="email" placeholder="Email" value={this.state.email}/>
-            <input onChange={this.handleChange} type="password" name="password" placeholder="Password" value={this.state.password}/>
             <input onChange={this.handleChange} type="text" name="fname" placeholder="First Name" value={this.state.fname}/>
             <input onChange={this.handleChange} type="text" name="lname" placeholder="Last Name" value={this.state.lname}/>
+            <input onChange={this.handleChange} type="password" name="password" placeholder="Password" value={this.state.password}/>
             <input onChange={this.handleChange} type="password" name="confirmpassword" placeholder="Confirm Password" value={this.state.confirmpassword}/>
             <span className="login-message">Already a user?</span>
             <button type="submit" id="reg-btn">Sign Up</button>

@@ -24,10 +24,11 @@ export function sendMessage(message) {
 }
 
 export function registration(username, password, fn) {
-    console.log('in actions register function')
-    api.registration(username, password).then(() => {          //breaking here
+    api.registration(username, password).then(() => {
         // fn('/')
+        console.log('in actions.js registration function')
     }).catch(err => {
+        store.dispatch({type:"LOGIN_ERROR",payload:err})
         console.log(err)
     })
 }
@@ -36,7 +37,7 @@ export function login(username, password, fn) {
     api.login(username, password).then(() => {
         // fn('/')
     }).catch(err => {
-        // store.dispatch('login error')
+        store.dispatch({type:"LOGIN_ERROR",payload:err})
         console.log(err)
     })
 }

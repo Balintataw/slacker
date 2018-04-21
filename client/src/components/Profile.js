@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import LeftBar from './LeftBar'
 import './profile.css'
 
@@ -8,7 +9,7 @@ export class Profile extends Component {
       <div className="profile-container">
         <LeftBar />
         <div className="profile-user-info">
-            <a href="#">Edit Profile</a>
+            <Link to="#">Edit Profile</Link>
             <img src="http://placehold.it/200/200" alt=""/>
             <h1>Username</h1>
             <h3>Actual name</h3>

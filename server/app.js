@@ -15,8 +15,9 @@ const jwt = require('express-jwt')
 
 app.use(bodyParser.json())
 
+// app.use('/', jwt({secret: config.get('jwt-secret')}), indexRouter) //login and registration page
 app.use('/', indexRouter) //login and registration page
-// app.use('/api', jwt({secret: config.get('jwt-secret')}), protectedRoutes)  //add Authorization here
+// app.use('/api', jwt({secret: config.get('jwt-secret')}), protectedRoutes)  //home and profile page
 
 server.listen(3001)
 
@@ -27,9 +28,9 @@ io.on('connection', (socket) => {
 })
 
 
-// app.use(express.json())
-// app.use(express.urlencoded({ extended: false }))
-// app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({
   extended: false
 }));
