@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 import store from '../store'
 
 import api from '../lib/api'
-api.new('/')
+api.new('/api')
 
 const socket = io.connect('http://localhost:3001')
 
