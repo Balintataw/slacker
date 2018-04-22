@@ -15,7 +15,7 @@ const jwt = require('express-jwt')
 
 app.use(bodyParser.json())
 
-app.use('/api', jwt({secret: config.get('jwt-secret')}), indexRouter) //login and registration page
+app.use('/api', indexRouter) //login and registration page
 // app.use('/api', indexRouter) //login and registration page
 // app.use('/api', jwt({secret: config.get('jwt-secret')}), protectedRoutes)  //home and profile page
 

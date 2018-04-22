@@ -11,8 +11,6 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/registration', (req, res, next) => {
-    console.log('here in index.js reg post') //not getting here
-    console.log('req.body' + req.body)
     const username = req.body.username
     const password = req.body.password
     const email = req.body.email
@@ -21,7 +19,6 @@ router.post('/registration', (req, res, next) => {
         SELECT count(1) FROM users WHERE username = ?
     `
     conn.query(sql, [username], (err, results, fields) => {
-        console.log('index.js registration query results' + results)
         if(results.count > 0) {
             res.status(409).json({
                 message: "Username already taken"
@@ -29,14 +26,15 @@ router.post('/registration', (req, res, next) => {
         } else {
             const token = jwt.sign({user: username}, config.get('jwt-secret'))
             // const token = uuid()
-            console.log('token:' + token )
             const insertSql = `
                 INSERT INTO users (username, email, password) VALUES (?,?,?)
             `
             conn.query(insertSql, [username, password, token], (err, results, fields) => {
                 console.log(results)
+                // results[0].config.headers.Authorization = 'Bearer ' + token
                 res.json({
-                    message: "User Created"
+                    message: "User Created",
+                    token: token
                 })
             })
         }

@@ -24,9 +24,9 @@ export function sendMessage(message) {
 }
 
 export function registration(username, password, fn) {
+    console.log('in actions.js registration function')
     api.registration(username, password).then(() => {
         // fn('/')
-        console.log('in actions.js registration function')
     }).catch(err => {
         store.dispatch({type:"LOGIN_ERROR",payload:err})
         console.log(err)

@@ -61,7 +61,7 @@ instance.registration = function (username, password) {
       console.log('in api.js registration post')
       console.log('resp.data.token ' + resp.data.token)
       window.localStorage.setItem('token', resp.data.token)
-      console.log(resp) // here headers.authorization returning undefined
+      console.log(resp.data) // here headers.authorization returning undefined
       this.registerInterceptor = this.interceptors.request.use(config => {
         config.headers['Authorization'] = 'Bearer ' + resp.data.token
         return config
