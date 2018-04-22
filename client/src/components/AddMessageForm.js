@@ -5,9 +5,12 @@ import TextArea from "react-textarea-autosize"
 
 import 'font-awesome/css/font-awesome.min.css'
 import EmojiPicker from 'emoji-picker-react'
-
+import {emojify} from 'react-emoji'
+// import JSEMOJI from 'emoji-js'
 import 'normalize.css/normalize.css'
 import './AddMessageForm.css'
+// const emoji = new JSEMOJI()
+
 
 export class AddMessageForm extends Component {
     state = {
@@ -39,8 +42,10 @@ export class AddMessageForm extends Component {
         })
     }
     myCallback = (code, data) => {
-        console.log(code)
-        console.log(data)
+        var output = `:${data.name}:`
+        this.setState({
+            message: this.state.message +' '+ output
+        })
     }
     render() {
         return (
