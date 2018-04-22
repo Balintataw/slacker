@@ -14,7 +14,7 @@ import './AddMessageForm.css'
 
 export class AddMessageForm extends Component {
     state = {
-        message: '',
+        message: ' ',
         renderEmoji: false
     }
     handleChange = (e) => {
@@ -44,7 +44,8 @@ export class AddMessageForm extends Component {
     myCallback = (code, data) => {
         var output = `:${data.name}:`
         this.setState({
-            message: this.state.message +' '+ output
+            message: this.state.message +' '+ output,
+            renderEmoji: false
         })
     }
     render() {

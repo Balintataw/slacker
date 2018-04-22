@@ -52,7 +52,18 @@
   .message-right {
     width: 100%;
   }
-  
+
+  .message-right h3 {
+    margin-bottom: 0px;
+  }
+
   .msg-content {
+    margin-top: 0px;
+  }
+  
+  .msg-content img {
+    height: 20px !important;
+    margin: 0 !important;
+    width: 20px !important;
   }
   
