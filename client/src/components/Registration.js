@@ -20,6 +20,7 @@ export class Registration extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     registration(this.state.username, this.state.password)
+    console.log(this.props.history.goBack())
   }
   render() {
     return (

@@ -11,8 +11,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/registration', (req, res, next) => {
+    console.log('req.body.password line 14 index.js ' + req.body.password)
     const username = req.body.username
-    const password = req.body.password
+    const password = req.body.password //sha512 here
     const email = req.body.email
 
     const sql = `
@@ -23,26 +24,26 @@ router.post('/registration', (req, res, next) => {
             res.status(409).json({
                 message: "Username already taken"
             })
-        } else {
+        } else {  //attach token data here
             const token = jwt.sign({user: username}, config.get('jwt-secret'))
-            // const token = uuid()
+            console.log('token ' + token)
             const insertSql = `
-                INSERT INTO users (username, email, password) VALUES (?,?,?)
+                INSERT INTO users (username, password, token) VALUES (?,?,?)
             `
-            conn.query(insertSql, [username, password, token], (err, results, fields) => {
-                console.log(results)
-                // results[0].config.headers.Authorization = 'Bearer ' + token
+            conn.query(insertSql, [username, password, token], (err2, results2, fields2) => {
+                console.log('results line32 index.js' + results2)
                 res.json({
                     message: "User Created",
-                    token: token
+                    token: token,
+                    user: username,
                 })
             })
         }
     })
 })
 
-router.post('/token', (req, res, next) => {
-    console.log('in index.js /token')
+router.post('/login', (req, res, next) => {
+    console.log('in index.js /login')
     const username = req.body.username
     const password = req.body.password //encrypt this
 
@@ -50,16 +51,20 @@ router.post('/token', (req, res, next) => {
         SELECT id FROM users WHERE username = ? AND password = ?
     `
     conn.query(sql, [username, password], (err, results, fields) => {
+        console.log('username and password not matched')
         if(results.length > 0) {
+            console.log('username and password returned match')
             const token = jwt.sign({user: username}, config.get('jwt-secret'))
-            // const sqlToken = `
-            //     UPDATE users SET token = ? WHERE id = ?
-            // `
-            // conn.query(sqlToken, [token, results[0].id], (err2, results2, fields2) => {
+            const sqlToken = `
+                UPDATE users SET token = ? WHERE id = ?
+            `
+            conn.query(sqlToken, [token, results[0].id], (err2, results2, fields2) => {
                 res.json({
-                    token: token
+                    message: "Login Successful",
+                    token: token,
+                    user: username,
                 })
-            // })
+            })
         } else {
             res.status(401).json({
                 message: "Bad Username and/or Password"

@@ -27,7 +27,7 @@ export class Home extends Component {
         <div className="master-wrapper">
         <LeftBar />
             <div className="test">
-                <Header />
+                <Header {...this.props}/>
                 <div className="test2">
                 <div className="feed-wrapper">
                     <div className="messages">
@@ -35,7 +35,8 @@ export class Home extends Component {
                             return  <div className="message-container" key={'siopao'+i}>
                             <img src="http://placehold.it/50/50" alt=""/>
                             <div className="message-right">
-                                <h3>name of you</h3>
+                            {console.log(this.props.messages)}
+                                <h3>{this.props.userData.userName}</h3>
                                 <p className="msg-content">{emojify(msg.message)}</p>
                             </div>
                         </div>
@@ -45,7 +46,7 @@ export class Home extends Component {
                     </div>
                 <AddMessageForm />
                 </div>
-                {this.state.rendering ? <RightBar sendRenderState={this.handleRenderChange}/> : ''}
+                {this.state.rendering ? <RightBar {...this.props} sendRenderState={this.handleRenderChange}/> : ''}
                 </div>
             </div>
         
@@ -55,8 +56,10 @@ export class Home extends Component {
 };
 
 function mapStateToProps(state) {
+    console.log(state)
     return {
-        messages: state.messages
+        messages: state.messages,
+        userData: state.userData
     }
 }
 

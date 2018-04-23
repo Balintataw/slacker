@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
 import store from '../store'
+import jwt from 'jsonwebtoken'
 
 import api from '../lib/api'
 api.new('/api')
@@ -24,7 +25,8 @@ export function sendMessage(message) {
 }
 
 export function registration(username, password, fn) {
-    console.log('in actions.js registration function')
+    // console.log('in actions.js registration function')
+    // console.log(jwt.decode(window.localStorage.getItem('token')))
     api.registration(username, password).then(() => {
         // fn('/')
     }).catch(err => {
@@ -34,6 +36,7 @@ export function registration(username, password, fn) {
 }
 
 export function login(username, password, fn) {
+    console.log(username, password)
     api.login(username, password).then(() => {
         // fn('/')
     }).catch(err => {

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import store from '../store'
+import {Redirect} from 'react-router'
 // import api from '..'
 
 const instance = axios.create()
@@ -38,8 +40,13 @@ instance.login = function (username, password) {
   console.log('in api.js login')
   return this.post(this.getTokenPath(), {username, password})
     .then(resp => {
+      console.log(resp.data)
       window.localStorage.setItem('token', resp.data.token)
-
+      //dispatch token to store
+      store.dispatch({
+        type: "ADD_TOKEN",
+        payload:resp.data
+      })
       this.tokenInterceptor = this.interceptors.request.use(config => {
         config.headers['Authorization'] = 'Bearer ' + resp.data.token
         return config
@@ -52,21 +59,26 @@ instance.logout = function() {
   this.interceptors.request.eject(this.tokenInterceptor)
   this.interceptors.request.eject(this.registerInterceptor)
   window.localStorage.removeItem('token')
+  // redirect('/')
 }
 
 instance.registration = function (username, password) {
-  console.log('in api.js registration')
   return this.post(this.getRegisterPath(), {username, password})
     .then(resp => {
-      console.log('in api.js registration post')
-      console.log('resp.data.token ' + resp.data.token)
       window.localStorage.setItem('token', resp.data.token)
-      console.log(resp.data) // here headers.authorization returning undefined
+      // console.log(resp.data)
+      //dispatch token to store
+      store.dispatch({
+        type: "ADD_TOKEN",
+        payload:resp.data
+      })
+
       this.registerInterceptor = this.interceptors.request.use(config => {
         config.headers['Authorization'] = 'Bearer ' + resp.data.token
         return config
       })
   })
+
 }
 
 export default instance

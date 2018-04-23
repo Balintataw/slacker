@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 import LeftBar from './LeftBar'
 import './profile.css'
 
@@ -11,7 +12,7 @@ export class Profile extends Component {
         <div className="profile-user-info">
             <Link to="#">Edit Profile</Link>
             <img src="http://placehold.it/200/200" alt=""/>
-            <h1>Username</h1>
+            <h1>{this.props.userData.userName}</h1>
             <h3>Actual name</h3>
             <h4>email</h4>
             <p>bio thing</p>
@@ -31,4 +32,12 @@ export class Profile extends Component {
   }
 };
 
-export default Profile;
+function mapStateToProps(state) {
+  console.log(state)
+  return {
+      messages: state.messages,
+      userData: state.userData
+  }
+}
+
+export default connect(mapStateToProps)(Profile)

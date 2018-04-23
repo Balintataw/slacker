@@ -36,7 +36,6 @@ export class AddMessageForm extends Component {
         })
     }
     toggleEmoji = (e) => {
-        console.log(e.target)
         this.setState({
             renderEmoji: !this.state.renderEmoji
         })

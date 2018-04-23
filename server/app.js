@@ -10,13 +10,10 @@ const protectedRoutes = require('./routes/protectedRoutes')
 const bodyParser = require('body-parser')
 const authorization = require('./middleware/authorization')
 const jwt = require('express-jwt')
-// const session = require('express-session')
-// const logger = require('morgan');
 
 app.use(bodyParser.json())
 
 app.use('/api', indexRouter) //login and registration page
-// app.use('/api', indexRouter) //login and registration page
 // app.use('/api', jwt({secret: config.get('jwt-secret')}), protectedRoutes)  //home and profile page
 
 server.listen(3001)

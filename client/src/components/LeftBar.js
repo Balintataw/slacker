@@ -10,8 +10,8 @@ export class LeftBar extends Component {
       <div className="leftbar-wrapper">
         <Link to='/'><h1 className="logo">Slacker</h1></Link>
         {/* <Link to="/login">Click to login</Link> */}
-        <Login />
-        <p>Not already a user?</p> <Link to="/registration">Sign up</Link>
+        {window.localStorage.getItem('token') ? '' : <Login />}
+        <p>Not already a user?</p><Link to="/registration">Sign up</Link>
       </div>
     )
   }
