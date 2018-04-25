@@ -17,9 +17,30 @@
 
 .roomlist-container li {
     cursor: pointer;
+    padding: 5px;
 }
 
 .roomlist-container li:hover {
     padding-left: 5px;
-    background-color: rgb(229, 255, 189);
+    background-color: rgb(153, 255, 0);
 }
+
+#add-room-form {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.room-input {
+    width: 80%;
+    border: none;
+    background: transparent;
+    padding: 5px 0 5px 5px;
+    outline: none;
+}
+
+button {
+    background: transparent;
+    border: none;
+}
+

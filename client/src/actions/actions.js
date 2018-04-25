@@ -4,8 +4,9 @@ import api from '../lib/api'
 
 api.new('/api')
 
-const socket = io.connect('http://localhost:3001') //change this to connect elsewhere
+// const socket = io.connect('http://localhost:3001') //change this to connect elsewhere
 // const socket = io.connect('http://70.180.192.241:3001')
+const socket = io.connect('http://10.68.0.239:3001')
 
 socket.emit('join', {room: store.getState().currentRoom})
 
@@ -33,7 +34,8 @@ export function addMessage(message) {
 
 export function sendMessage(message) {
     const username = store.getState().userName
-    const roomname = store.getState().roomName
+    const roomname = store.getState().currentRoom
+    
     socket.emit('message', {
         username: username,
         message: message,

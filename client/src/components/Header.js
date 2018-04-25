@@ -20,7 +20,7 @@ class Header extends Component {
   render() {
     return (
       <div className="header-wrapper">
-        <span>Date or Room name</span>
+        <span>{this.props.currentRoom}</span>
         {this.props.isAuthenticated ? 
         <div className="user-info">
           {/* <span>{jwt.decode(window.localStorage.getItem('token')).user}</span> */}
@@ -37,6 +37,7 @@ function mapStateToProps(state) {
   return {
       username: state.userName,
       isAuthenticated: state.isAuthenticated,
+      currentRoom: state.currentRoom
   }
 }
 

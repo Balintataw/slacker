@@ -53,11 +53,12 @@ export class Home extends Component {
         </div>
         )
     }
-};
+}
 
 function mapStateToProps(state) {
+    console.log(state)
     return {
-        messages: state.messages,
+        messages: state.messages.filter(msg => msg.roomname === state.currentRoom),
         username: state.userName,
         isAuthenticated: state.isAuthenticated,
         loginErrorMsg: state.loginErrorMsg

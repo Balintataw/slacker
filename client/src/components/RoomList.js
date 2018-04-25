@@ -25,8 +25,8 @@ class RoomList extends Component {
   render() {
     return (
       <div className="roomlist-container">
-        <form onSubmit={this.createRoomSubmit}>
-            <input type="text" onChange={this.handleChange} placeholder="Create Room" value={this.state.roomname}/>
+        <form onSubmit={this.createRoomSubmit} id="add-room-form">
+            <input type="text" onChange={this.handleChange} placeholder="Create Room" value={this.state.roomname} className="room-input"/>
             <button type="submit">+</button>
         </form>
         <ul>
