@@ -5,8 +5,8 @@ import LeftBar from './LeftBar'
 import RightBar from './RightBar'
 import Header from './Header'
 import {emojify} from 'react-emoji'
-import Moment from 'react-moment'
 import TimeAgo from 'react-timeago'
+
 
 import 'normalize.css/normalize.css'
 import './home.css'
@@ -36,7 +36,7 @@ export class Home extends Component {
                     <div className="messages">
                         {this.props.messages.map((msg, i) => {
                             return  <div className="message-container" key={'siopao'+i}>
-                            <img src="http://placehold.it/50/50" alt=""/>
+                            <img src={this.props.profile_image} alt="profile image"/>
                             <div className="message-right">
                                 <div className="msg-right-top-wrapper"><h3 className="msg-username">{msg.username}</h3><TimeAgo date={msg.timestamp} minPeriod={10} className="timestamp"/></div>
                                 <p className="msg-content">{emojify(msg.message)}</p>
@@ -47,7 +47,7 @@ export class Home extends Component {
                         })}
                     </div>
                 <AddMessageForm />
-                </div> : this.props.loginErrorMsg !== '' ? <h1 className="login-error-msg">{this.props.loginErrorMsg}</h1> : <h1>Log in or sign up to start communicating</h1>}
+                </div> : this.props.loginErrorMsg !== '' ? <h1 className="login-error-msg">{this.props.loginErrorMsg}</h1> : <h1 className="welcome-msg">Log in or sign up to start communicating</h1>}
                 {this.state.rendering ? <RightBar {...this.props} sendRenderState={this.handleRenderChange}/> : ''}
                 </div>
             </div>
@@ -63,7 +63,8 @@ function mapStateToProps(state) {
         messages: state.messages.filter(msg => msg.roomname === state.currentRoom),
         username: state.userName,
         isAuthenticated: state.isAuthenticated,
-        loginErrorMsg: state.loginErrorMsg
+        loginErrorMsg: state.loginErrorMsg,
+        profile_image: state.profile_image
     }
 }
 

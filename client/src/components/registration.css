@@ -28,6 +28,8 @@
 
 #reg-btn {
     width: 45%;
+    border: 1px solid black;
+    background: rgb(255, 250, 232);
     margin-top: 10px;
     margin-bottom: 20px;
     border-top-right-radius: 8px;
@@ -61,4 +63,15 @@
 
 ::placeholder {
     color: white;
+}
+
+.add-image-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px 10px 20px;
+}
+
+#upload-img {
+    width: 200px;
+    height: 200px;
 }

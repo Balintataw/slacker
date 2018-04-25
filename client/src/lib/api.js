@@ -44,7 +44,7 @@ instance.login = function (username, password) {
         config.headers['Authorization'] = 'Bearer ' + resp.data.token
         return config
       })
-      console.log('resp.data', resp.data)
+      console.log('resp.data login ', resp.data)
       store.dispatch({
         type: "ADD_TOKEN",
         payload:resp.data
@@ -60,8 +60,8 @@ instance.logout = function() {
   // redirect('/')
 }
 
-instance.registration = function (username, password, email, fname, lname, profile_image) {
-  return this.post(this.getRegisterPath(), {username, password, email, fname, lname, profile_image})
+instance.registration = function (username, password, email, fname, lname, uploadURL) {
+  return this.post(this.getRegisterPath(), {username, password, email, fname, lname, uploadURL})
     .then(resp => {
       window.localStorage.setItem('token', resp.data.token)
       //dispatch token to store 
@@ -69,7 +69,7 @@ instance.registration = function (username, password, email, fname, lname, profi
         config.headers['Authorization'] = 'Bearer ' + resp.data.token
         return config
       })
-      console.log(resp.data)
+      console.log('registration api ' + resp.data)
       store.dispatch({
         type: "ADD_TOKEN",
         payload:resp.data

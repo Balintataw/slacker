@@ -1,10 +1,16 @@
 .header-wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 50px;
     padding: 0 0 0 20px;
     background-color: rgb(139, 227, 139);
+}
+
+.header-inner-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 #profile-image {

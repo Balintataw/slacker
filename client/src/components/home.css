@@ -49,6 +49,11 @@
   .test2 {
     display: flex;
   }
+
+  .welcome-msg {
+    font-size: 18px;
+    margin-left: 20px;
+  }
   
   .message-container {
     display: flex;

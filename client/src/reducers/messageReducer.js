@@ -21,7 +21,8 @@ export default function(state = initialState, action) {
             return {...state, currentRoom: action.payload}
         case "UPDATE_ROOMS":
             return {...state, rooms: action.payload}
-
+        case "ADD_IMAGE_URL":
+            return {...state, profile_image: action.payload}
         case "ADD_TOKEN":  //login and register
             return {...state, token: action.payload.token, 
                               isAuthenticated: true,
@@ -30,9 +31,11 @@ export default function(state = initialState, action) {
                               fname: action.payload.fname,
                               lname: action.payload.lname,
                               email: action.payload.email,
-                              image: action.payload.profile_image}
+                              profile_image: action.payload.profile_image}
         case "LOGIN_ERROR":
-            return {...state, loginErrorMsg: 'Incorrect user name and/or password'}                         
+            return {...state, loginErrorMsg: 'Incorrect user name and/or password'}
+        case "LOGOUT":
+            return {...state, isAuthenticated: false}
         case "GET_PROFILE_PAGE":
             return {...state, profileData: action.payload}
         default:

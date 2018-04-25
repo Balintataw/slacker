@@ -30,7 +30,6 @@ export class AddMessageForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-
         sendMessage(this.state.message)
         this.setState({
             message: ''

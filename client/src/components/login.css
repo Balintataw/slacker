@@ -27,6 +27,7 @@
     border-radius: 0px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    outline: none;
 }
 
 .log-form-container input {

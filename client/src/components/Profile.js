@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import LeftBar from './LeftBar'
-import {getProfilePage} from '../actions/actions'
+// import {getProfilePage} from '../actions/actions'
 import './profile.css'
 
 export class Profile extends Component {

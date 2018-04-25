@@ -85,3 +85,17 @@ export function getProfilePage(username) {
         console.log(err)
     })
 }
+
+export function addImage(url) {
+  store.dispatch({
+      type: "ADD_IMAGE_URL",
+      payload: url
+  })  
+}
+
+export function logoutUser() {
+    store.dispatch({
+        type: "LOGOUT",
+        payload: ''
+    })
+}

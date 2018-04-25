@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
-import {Link, Redirect, withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import api from '../lib/api'
-import jwt from 'jsonwebtoken'
+import {logoutUser} from '../actions/actions'
 import './header.css'
 
-let token = jwt.decode(window.localStorage.getItem('token'))
+// let token = jwt.decode(window.localStorage.getItem('token'))
 
 class Header extends Component {
+  state = {
+    date: ''
+  }
   static defaultProps = {
     // userData: {}
   }
@@ -15,29 +18,41 @@ class Header extends Component {
     e.preventDefault()
     console.log('log out complete')
     api.logout()
+    logoutUser()
     this.props.history.push('/')
+  }
+  componentDidMount = () => {
+    const reg = /(\w+\s\w+\s\d+)/
+    const regDate = new Date().toString().match(reg)
+    this.setState({
+      date: regDate[0]
+    })
   }
   render() {
     return (
       <div className="header-wrapper">
-        <span>{this.props.currentRoom}</span>
-        {this.props.isAuthenticated ? 
-        <div className="user-info">
-          {/* <span>{jwt.decode(window.localStorage.getItem('token')).user}</span> */}
-          <span>{this.props.username}</span>
-          <img src="http://placehold.it/30/30" id="profile-image" alt=""/>
-           <Link to="/" onClick={this.handleLogout}>Logout</Link> 
-        </div> : <Link to="/" onClick={this.handleLogout}>Logout</Link>}
+        {this.props.isAuthenticated ?
+        <div className="header-inner-wrapper">
+          <span>You are in: {this.props.currentRoom}</span><span>{this.state.date}</span>
+          <div className="user-info">
+            <span>{this.props.username}</span>
+            <img src={this.props.profile_image} id="profile-image" alt=""/>
+            <Link to="/" onClick={this.handleLogout}>Logout</Link> 
+          </div>
+        </div> : <div>{this.state.date}</div>}
+        
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
+  console.log('header state profile_image' + state.profile_image)
   return {
       username: state.userName,
       isAuthenticated: state.isAuthenticated,
-      currentRoom: state.currentRoom
+      currentRoom: state.currentRoom,
+      profile_image: state.profile_image
   }
 }
 
