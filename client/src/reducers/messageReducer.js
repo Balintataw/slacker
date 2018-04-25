@@ -1,7 +1,5 @@
 const initialState = {
-    messages: [],
     token: {},
-    // userData: {},
     userName: '',
     fname: '',
     lname: '',
@@ -9,15 +7,22 @@ const initialState = {
     profile_image: '',
     loginErrorMsg: '',
     profileData: {},
-    isAuthenticated: false
+    isAuthenticated: false,
+    currentRoom: 'general',
+    rooms: ['general'],
+    messages: []
 }
 
 export default function(state = initialState, action) {
     switch (action.type) {
         case "ADD_MESSAGE":
             return {...state, messages: [action.payload, ...state.messages]}
+        case "JOIN_ROOM":
+            return {...state, currentRoom: action.payload}
+        case "UPDATE_ROOMS":
+            return {...state, rooms: action.payload}
+
         case "ADD_TOKEN":  //login and register
-            // console.log('add_token payload ' + JSON.stringify(action.payload))
             return {...state, token: action.payload.token, 
                               isAuthenticated: true,
                               loginErrorMsg: '',

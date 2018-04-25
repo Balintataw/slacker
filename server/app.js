@@ -19,8 +19,23 @@ app.use('/api', jwt({secret: config.get('jwt-secret')}), protectedRoutes)  //hom
 server.listen(3001)
 
 io.on('connection', (socket) => {
+  let rooms = ['general']
+  socket.on('join', roomInfo => {
+    socket.join(roomInfo.room)
+    socket.emit('update rooms', rooms)
+  })
+  socket.emit('message', {
+    message: 'Welcome to this room'
+  })
   socket.on('message', data => {
     io.emit('message', data)
+  })
+  socket.on('create room', room => {
+    if (!rooms.find(rm => rm === room)) {
+      rooms.push(room)
+
+      io.emit('update rooms', rooms)
+    }
   })
 })
 

@@ -1,0 +1,25 @@
+.roomlist-container {
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: rgb(62, 165, 62);
+}
+
+.roomlist-container ul {
+    list-style-type: none;
+    margin: 10px 0;
+    padding:0;
+}
+
+.roomlist-container li.current {
+    background-color: greenyellow;
+}
+
+.roomlist-container li {
+    cursor: pointer;
+}
+
+.roomlist-container li:hover {
+    padding-left: 5px;
+    background-color: rgb(229, 255, 189);
+}

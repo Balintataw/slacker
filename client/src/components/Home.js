@@ -36,8 +36,7 @@ export class Home extends Component {
                             return  <div className="message-container" key={'siopao'+i}>
                             <img src="http://placehold.it/50/50" alt=""/>
                             <div className="message-right">
-                            {console.log(this.props.messages)}
-                                <h3>{this.props.username}</h3>
+                                <h3>{msg.username}</h3>
                                 <p className="msg-content">{emojify(msg.message)}</p>
                             </div>
                         </div>
@@ -57,10 +56,8 @@ export class Home extends Component {
 };
 
 function mapStateToProps(state) {
-    console.log(state)
     return {
         messages: state.messages,
-        // userData: state.userData,
         username: state.userName,
         isAuthenticated: state.isAuthenticated,
         loginErrorMsg: state.loginErrorMsg

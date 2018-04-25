@@ -1,17 +1,28 @@
 import io from 'socket.io-client'
 import store from '../store'
-// import jwt from 'jsonwebtoken'
 import api from '../lib/api'
-// import axios from 'axios'
 
-// const conn = require('../lib/conn')
 api.new('/api')
 
-const socket = io.connect('http://localhost:3001')
+const socket = io.connect('http://localhost:3001') //change this to connect elsewhere
+// const socket = io.connect('http://70.180.192.241:3001')
+
+socket.emit('join', {room: store.getState().currentRoom})
 
 socket.on('message', data => {
     addMessage(data)
 })
+
+socket.on('update rooms', rooms => {
+    updateRooms(rooms)
+})
+
+export function joinRoom(room) {
+    store.dispatch({
+        type: "JOIN_ROOM",
+        payload: room
+    })
+}
 
 export function addMessage(message) {
     store.dispatch({
@@ -21,13 +32,27 @@ export function addMessage(message) {
 }
 
 export function sendMessage(message) {
+    const username = store.getState().userName
+    const roomname = store.getState().roomName
     socket.emit('message', {
-        message: message
+        username: username,
+        message: message,
+        roomname: roomname
     })
 }
 
+export function updateRooms(rooms) {
+    store.dispatch({
+        type: "UPDATE_ROOMS",
+        payload: rooms
+    })
+}
+
+export function createRoom(room) {
+    socket.emit('create room', room)
+}
+
 export function registration(username, password, email, fname, lname, profile_image) {
-    console.log('actions line 30 ' + profile_image)
     api.registration(username, password, email, fname, lname, profile_image).then((resp) => {
         // fn('/')
     }).catch(err => {
@@ -37,7 +62,6 @@ export function registration(username, password, email, fname, lname, profile_im
 }
 
 export function login(username, password, fn) {
-    console.log(username, password)
     api.login(username, password).then(() => {
         // fn('/')
     }).catch(err => {
