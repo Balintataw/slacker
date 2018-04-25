@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import {Link, Redirect} from 'react-router-dom'
+import {Link, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-
 import api from '../lib/api'
 import jwt from 'jsonwebtoken'
 import './header.css'
 
 let token = jwt.decode(window.localStorage.getItem('token'))
 
-export class Header extends Component {
+class Header extends Component {
   static defaultProps = {
-    userData: {}
+    // userData: {}
   }
   handleLogout = (e) => {
     e.preventDefault()
@@ -22,22 +21,23 @@ export class Header extends Component {
     return (
       <div className="header-wrapper">
         <span>Date or Room name</span>
+        {this.props.isAuthenticated ? 
         <div className="user-info">
-          <span>{this.props.userData.userName}</span>
+          {/* <span>{jwt.decode(window.localStorage.getItem('token')).user}</span> */}
+          <span>{this.props.username}</span>
           <img src="http://placehold.it/30/30" id="profile-image" alt=""/>
-          {window.localStorage.getItem('token') !== null ? <Link to="/" onClick={this.handleLogout}>Logout</Link> : ''}
-        </div>
+           <Link to="/" onClick={this.handleLogout}>Logout</Link> 
+        </div> : <Link to="/" onClick={this.handleLogout}>Logout</Link>}
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
-      messages: state.messages,
-      userData: state.userData
+      username: state.userName,
+      isAuthenticated: state.isAuthenticated,
   }
 }
 
-export default connect(mapStateToProps)(Header)
+export default withRouter(connect(mapStateToProps)(Header))

@@ -12,7 +12,14 @@
   }
 
   .test2 {
+    display: flex;
+    justify-content: space-between;
     height: 100%;
+    background-color: rgb(255, 250, 232);
+  }
+
+  .login-error-msg {
+    color: rgb(182, 32, 32);
   }
   
   .feed-wrapper {

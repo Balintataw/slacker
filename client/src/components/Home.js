@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {AddMessageForm} from './AddMessageForm'
-import {LeftBar} from './LeftBar'
-import {RightBar} from './RightBar'
-import {Header} from './Header'
+import LeftBar from './LeftBar'
+import RightBar from './RightBar'
+import Header from './Header'
 import {emojify} from 'react-emoji'
 
 import 'normalize.css/normalize.css'
@@ -27,8 +27,9 @@ export class Home extends Component {
         <div className="master-wrapper">
         <LeftBar />
             <div className="test">
-                <Header {...this.props}/>
+                <Header />
                 <div className="test2">
+                {this.props.isAuthenticated ? 
                 <div className="feed-wrapper">
                     <div className="messages">
                         {this.props.messages.map((msg, i) => {
@@ -36,7 +37,7 @@ export class Home extends Component {
                             <img src="http://placehold.it/50/50" alt=""/>
                             <div className="message-right">
                             {console.log(this.props.messages)}
-                                <h3>{this.props.userData.userName}</h3>
+                                <h3>{this.props.username}</h3>
                                 <p className="msg-content">{emojify(msg.message)}</p>
                             </div>
                         </div>
@@ -45,7 +46,7 @@ export class Home extends Component {
                         })}
                     </div>
                 <AddMessageForm />
-                </div>
+                </div> : this.props.loginErrorMsg !== '' ? <h1 className="login-error-msg">{this.props.loginErrorMsg}</h1> : <h1>Log in or sign up to start communicating</h1>}
                 {this.state.rendering ? <RightBar {...this.props} sendRenderState={this.handleRenderChange}/> : ''}
                 </div>
             </div>
@@ -59,7 +60,10 @@ function mapStateToProps(state) {
     console.log(state)
     return {
         messages: state.messages,
-        userData: state.userData
+        // userData: state.userData,
+        username: state.userName,
+        isAuthenticated: state.isAuthenticated,
+        loginErrorMsg: state.loginErrorMsg
     }
 }
 

@@ -14,7 +14,7 @@ const jwt = require('express-jwt')
 app.use(bodyParser.json())
 
 app.use('/api', indexRouter) //login and registration page
-// app.use('/api', jwt({secret: config.get('jwt-secret')}), protectedRoutes)  //home and profile page
+app.use('/api', jwt({secret: config.get('jwt-secret')}), protectedRoutes)  //home and profile page
 
 server.listen(3001)
 
@@ -34,7 +34,8 @@ app.use(bodyParser.urlencoded({
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  console.log('error 404')
+  next();
 });
 
 module.exports = app;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {login} from '../actions/actions'
+import {connect} from 'react-redux'
 import './login.css'
 
 export class Login extends Component {
@@ -34,4 +35,11 @@ export class Login extends Component {
   }
 }
 
-export default Login
+function mapStateToProps(state) {
+  console.log('login state ' + state)
+  return {
+    errorMsg : state.loginErrorMsg
+  }
+}
+
+export default connect(mapStateToProps)(Login)

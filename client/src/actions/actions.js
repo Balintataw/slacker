@@ -1,8 +1,10 @@
 import io from 'socket.io-client'
 import store from '../store'
-import jwt from 'jsonwebtoken'
-
+// import jwt from 'jsonwebtoken'
 import api from '../lib/api'
+// import axios from 'axios'
+
+// const conn = require('../lib/conn')
 api.new('/api')
 
 const socket = io.connect('http://localhost:3001')
@@ -24,10 +26,9 @@ export function sendMessage(message) {
     })
 }
 
-export function registration(username, password, fn) {
-    // console.log('in actions.js registration function')
-    // console.log(jwt.decode(window.localStorage.getItem('token')))
-    api.registration(username, password).then(() => {
+export function registration(username, password, email, fname, lname, profile_image) {
+    console.log('actions line 30 ' + profile_image)
+    api.registration(username, password, email, fname, lname, profile_image).then((resp) => {
         // fn('/')
     }).catch(err => {
         store.dispatch({type:"LOGIN_ERROR",payload:err})
@@ -39,6 +40,18 @@ export function login(username, password, fn) {
     console.log(username, password)
     api.login(username, password).then(() => {
         // fn('/')
+    }).catch(err => {
+        store.dispatch({type:"LOGIN_ERROR",payload:err})
+        console.log(err)
+    })
+}
+
+export function getProfilePage(username) {
+    api.get('/profile/' + username).then(resp => {
+        store.dispatch({
+            type: "GET_PROFILE_PAGE",
+            payload: resp.data
+        })
     }).catch(err => {
         store.dispatch({type:"LOGIN_ERROR",payload:err})
         console.log(err)

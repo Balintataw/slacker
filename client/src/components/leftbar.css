@@ -6,6 +6,10 @@
     background-color: rgb(17, 102, 17);
 }
 
+.login-container {
+    text-align: center;
+}
+
 .leftbar-wrapper a {
     text-decoration: none;
 }
@@ -19,4 +23,16 @@
     font-size: 40px;
     padding: 0 5px 0 5px;
     background: black;
+}
+
+.channel-list {
+    font-size: 22px;
+    padding: 0;
+}
+
+.channel-list li {
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 16px;
+    padding: 8px 0;
 }

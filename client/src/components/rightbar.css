@@ -1,12 +1,18 @@
 .rightbar-wrapper {
-    position: relative;
+    /* position: absolute; */
     width: 30%;
+    right: 0;
+    bottom: 0;
+    top: 45px;
+    
     background-color: rgb(136, 204, 136);
 }
 
 #close-btn {
     position: absolute;
-    top: 10px;
+    top: 55px;
     right: 10px;
     background: transparent;
+    border: none;
+    cursor: pointer;
 }

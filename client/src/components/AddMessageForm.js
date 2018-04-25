@@ -5,7 +5,7 @@ import TextArea from "react-textarea-autosize"
 
 import 'font-awesome/css/font-awesome.min.css'
 import EmojiPicker from 'emoji-picker-react'
-import {emojify} from 'react-emoji'
+// import {emojify} from 'react-emoji'
 // import JSEMOJI from 'emoji-js'
 import 'normalize.css/normalize.css'
 import './AddMessageForm.css'

@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import api from '../lib/api'
+import jwt from 'jsonwebtoken'
+
+
 import './rightbar.css'
 
-export class RightBar extends Component {
+class RightBar extends Component {
   state = {
     rendering: null
   }
@@ -11,6 +15,11 @@ export class RightBar extends Component {
       rendering: false
     })
     this.props.sendRenderState(this.state.rendering)
+  }
+  handleProfileClick = (e) => {
+    e.preventDefault()
+    api.profilePage(jwt.decode(window.localStorage.getItem('token')).user)
+    this.props.history.push('/profile')
   }
   render() {
     return (
