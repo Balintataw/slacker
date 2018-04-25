@@ -5,6 +5,8 @@ import LeftBar from './LeftBar'
 import RightBar from './RightBar'
 import Header from './Header'
 import {emojify} from 'react-emoji'
+import Moment from 'react-moment'
+import TimeAgo from 'react-timeago'
 
 import 'normalize.css/normalize.css'
 import './home.css'
@@ -22,9 +24,9 @@ export class Home extends Component {
         })
     }
 
-  render() {
-    return (
-        <div className="master-wrapper">
+    render() {
+        return (
+            <div className="master-wrapper">
         <LeftBar />
             <div className="test">
                 <Header />
@@ -36,7 +38,7 @@ export class Home extends Component {
                             return  <div className="message-container" key={'siopao'+i}>
                             <img src="http://placehold.it/50/50" alt=""/>
                             <div className="message-right">
-                                <h3>{msg.username}</h3>
+                                <div className="msg-right-top-wrapper"><h3 className="msg-username">{msg.username}</h3><TimeAgo date={msg.timestamp} minPeriod={10} className="timestamp"/></div>
                                 <p className="msg-content">{emojify(msg.message)}</p>
                             </div>
                         </div>

@@ -35,11 +35,13 @@ export function addMessage(message) {
 export function sendMessage(message) {
     const username = store.getState().userName
     const roomname = store.getState().currentRoom
+    const timestamp = new Date()
     
     socket.emit('message', {
         username: username,
         message: message,
-        roomname: roomname
+        roomname: roomname,
+        timestamp: timestamp
     })
 }
 
