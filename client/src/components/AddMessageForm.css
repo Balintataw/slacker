@@ -4,7 +4,6 @@
     width: 100%;
     margin: 0 0 40px 0;
     padding-top: 20px;
-    /* height: 57px; */
     border-top: 1px solid rgb(169, 169, 169);
 }
 
@@ -15,11 +14,6 @@
     height: 100%;
 }
 
-/* input, button {
-    border-radius: 0px;
-    border: transparent;
-    outline: none;
-} */
 .btn-input {
     display: flex;
     position: relative;
@@ -32,8 +26,6 @@
 .btn-input #textarea {
     width: 100%;
     min-height: 30px !important;
-    /* border-top-left-radius: 8px; */
-    /* border-bottom-left-radius: 8px; */
     border-radius: 12px;
     outline: none;
     border: none;
@@ -49,11 +41,6 @@
 
 #btn-hidden {
     display: none;
-    /* width: 10%;
-    cursor: pointer;
-    background:white;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px; */
 }
 
 ::placeholder {

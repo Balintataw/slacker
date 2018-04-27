@@ -11,9 +11,7 @@ class Header extends Component {
   state = {
     date: ''
   }
-  static defaultProps = {
-    // userData: {}
-  }
+
   handleLogout = (e) => {
     e.preventDefault()
     console.log('log out complete')
@@ -36,7 +34,7 @@ class Header extends Component {
           <span>You are in: {this.props.currentRoom}</span><span>{this.state.date}</span>
           <div className="user-info">
             <span>{this.props.username}</span>
-            <img src={this.props.profile_image} id="profile-image" alt=""/>
+            <Link to="/profile"><img src={this.props.profile_image} id="profile-image" alt=""/></Link>
             <Link to="/" onClick={this.handleLogout}>Logout</Link> 
           </div>
         </div> : <div>{this.state.date}</div>}
@@ -47,7 +45,6 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('header state profile_image' + state.profile_image)
   return {
       username: state.userName,
       isAuthenticated: state.isAuthenticated,

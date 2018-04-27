@@ -1,10 +1,8 @@
 .rightbar-wrapper {
-    /* position: absolute; */
     width: 30%;
     right: 0;
     bottom: 0;
     top: 45px;
-    
     background-color: rgb(136, 204, 136);
 }
 

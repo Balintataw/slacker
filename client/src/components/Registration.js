@@ -95,7 +95,7 @@ export class Registration extends Component {
                 {this.state.uploadCloudinaryUrl === '' ? null :
                 <div>
                   {/* <p>{this.state.uploadedFile.name}</p> */}
-                  <img id="upload-img" src={this.state.uploadCloudinaryUrl} />
+                  <img id="upload-img" src={this.state.uploadCloudinaryUrl} alt="upload"/>
                 </div>}
               </div>
             </div>

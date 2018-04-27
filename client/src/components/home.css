@@ -1,104 +1,100 @@
 #root {
-  height: 20px !important;
+  /* height: 20px !important; */
 }
 
 .master-wrapper {
     display: flex;
-    /* justify-content: space-around; */
     width: 100%;
-    /* width: 800px; */
     height: 100vh;
     box-sizing: border-box;
-  }
+}
 
-  .test2 {
+.test2 {
     display: flex;
     justify-content: space-between;
     height: 100%;
     background-color: rgb(255, 250, 232);
-  }
+}
 
-  .login-error-msg {
+.login-error-msg {
     color: rgb(182, 32, 32);
-  }
+}
   
-  .feed-wrapper {
+.feed-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* height: 800px; */
     width: 100%;
-  }
+}
   
-  .messages {
+.messages {
     display: flex;
     flex-direction: column-reverse;
     height: 100%;
     width: 100%;
     overflow: auto;
     overflow-x: hidden;
-    /* border: 1px solid black; */
-  }
+}
   
-  .test {
+.test {
     display: flex;
     flex-direction: column;
     width: 80%;
-  }
+}
   
-  .test2 {
+.test2 {
     display: flex;
-  }
+}
 
-  .welcome-msg {
+.welcome-msg {
     font-size: 18px;
     margin-left: 20px;
-  }
+}
   
-  .message-container {
+.message-container {
     display: flex;
     align-items: center;
     min-height: 5.5rem;
     margin: 0 15px;
-  }
+}
   
-  .message-container img {
+.message-container img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin: 0 15px 0 0;
-  }
+}
 
-  .msg-username {
+.msg-username {
     display: block;
     margin: 0 5px 0 0;
-  }
+}
 
-  .msg-right-top-wrapper {
+.msg-right-top-wrapper {
     display: flex;
     align-items: flex-end;
     padding: 5px 0;
-  }
+}
 
-  .timestamp {
+.timestamp {
     font-size: 12px;
-  }
+}
   
-  .message-right {
+.message-right {
     width: 100%;
-  }
+}
 
-  .message-right h3 {
+.message-right h3 {
     margin-bottom: 0px;
-  }
+}
 
-  .msg-content {
+.msg-content {
     margin-top: 0px;
-  }
+}
   
-  .msg-content img {
+.msg-content img {
     height: 20px !important;
     margin: 0 !important;
     width: 20px !important;
-  }
+}
   

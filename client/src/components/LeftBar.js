@@ -11,7 +11,6 @@ class LeftBar extends Component {
     return (
       <div className="leftbar-wrapper">
         <Link to='/'><h1 className="logo">Slacker</h1></Link>
-        {/* change below to operate off isAuthenticated prop */}
         {this.props.isAuthenticated ? <RoomList /> : <div className="login-container"><Login />
         <p>Not already a user?</p><Link to="/registration">Sign up</Link></div>}
       </div>
@@ -20,7 +19,6 @@ class LeftBar extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('left bar state ' + state)
   return {
     errorMsg : state.loginErrorMsg,
     isAuthenticated: state.isAuthenticated

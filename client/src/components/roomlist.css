@@ -16,8 +16,19 @@
 }
 
 .roomlist-container li {
+    display: flex;
+    justify-content: space-between;
     cursor: pointer;
     padding: 5px;
+}
+
+.unread {
+    width: 20px;
+    height: 20PX;
+    text-align: center;
+    line-height: 20px;
+    background: red;
+    border-radius: 50%;
 }
 
 .roomlist-container li:hover {
@@ -27,8 +38,12 @@
 
 #add-room-form {
     display: flex;
+    justify-content: space-between;
     width: 100%;
     border-bottom: 1px solid black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: green;
 }
 
 .room-input {
@@ -39,8 +54,10 @@
     outline: none;
 }
 
-button {
+#add-room-btn {
     background: transparent;
     border: none;
+    outline: none;
+    padding-right: 10px;
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {AddMessageForm} from './AddMessageForm'
 import LeftBar from './LeftBar'
@@ -36,14 +37,12 @@ export class Home extends Component {
                     <div className="messages">
                         {this.props.messages.map((msg, i) => {
                             return  <div className="message-container" key={'siopao'+i}>
-                            <img src={this.props.profile_image} alt="profile image"/>
+                            <Link to='/profile'><img src={msg.profile_image} alt="profile"/></Link>
                             <div className="message-right">
                                 <div className="msg-right-top-wrapper"><h3 className="msg-username">{msg.username}</h3><TimeAgo date={msg.timestamp} minPeriod={10} className="timestamp"/></div>
                                 <p className="msg-content">{emojify(msg.message)}</p>
                             </div>
                         </div>
-                                        
-                                    
                         })}
                     </div>
                 <AddMessageForm />
@@ -51,14 +50,12 @@ export class Home extends Component {
                 {this.state.rendering ? <RightBar {...this.props} sendRenderState={this.handleRenderChange}/> : ''}
                 </div>
             </div>
-        
         </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    console.log(state)
     return {
         messages: state.messages.filter(msg => msg.roomname === state.currentRoom),
         username: state.userName,

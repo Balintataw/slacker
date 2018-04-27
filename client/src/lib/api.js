@@ -1,6 +1,5 @@
 import axios from 'axios'
 import store from '../store'
-// import api from '..'
 
 const instance = axios.create()
 
@@ -44,7 +43,6 @@ instance.login = function (username, password) {
         config.headers['Authorization'] = 'Bearer ' + resp.data.token
         return config
       })
-      console.log('resp.data login ', resp.data)
       store.dispatch({
         type: "ADD_TOKEN",
         payload:resp.data
@@ -57,7 +55,6 @@ instance.logout = function() {
   this.interceptors.request.eject(this.tokenInterceptor)
   this.interceptors.request.eject(this.registerInterceptor)
   window.localStorage.removeItem('token')
-  // redirect('/')
 }
 
 instance.registration = function (username, password, email, fname, lname, uploadURL) {
@@ -69,7 +66,7 @@ instance.registration = function (username, password, email, fname, lname, uploa
         config.headers['Authorization'] = 'Bearer ' + resp.data.token
         return config
       })
-      console.log('registration api ' + resp.data)
+      // console.log('registration api ' + resp.data)
       store.dispatch({
         type: "ADD_TOKEN",
         payload:resp.data

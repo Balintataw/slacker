@@ -17,6 +17,9 @@ export class AddMessageForm extends Component {
         message: ' ',
         renderEmoji: false
     }
+    static defaultProps = {
+        rooms: []
+    }
     handleChange = (e) => {
         this.setState({
             [e.target.name]:e.target.value
@@ -33,6 +36,13 @@ export class AddMessageForm extends Component {
         sendMessage(this.state.message)
         this.setState({
             message: ''
+        })
+        this.props.rooms.map(room => {
+            if (room.roomname === this.props.currentRoom) {
+                return room.unreadMsgsCount++
+            } else {
+                return room.unreadMsgsCount
+            }
         })
     }
     toggleEmoji = (e) => {
@@ -52,7 +62,6 @@ export class AddMessageForm extends Component {
             <div className="form-input-container">
                 <form onSubmit={this.handleSubmit} id="message-form" ref={el => this.myFormRef = el}>
                 <div className="btn-input">
-                    {/* <input type="text" name="message" placeholder="Message" value={this.state.message} onChange={this.handleChange} /> */}
                     <TextArea name="message" placeholder="Message" value={this.state.message} onChange={this.handleChange} onKeyDown={this.handleKeypress} id="textarea" />
                     <button type="submit" id="btn-hidden"></button>
                         <div className="dropdown-content">
@@ -67,9 +76,9 @@ export class AddMessageForm extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state)
     return {
-        messages: state.messages
+        messages: state.messages,
+        rooms: state.rooms,
     }
 }
 

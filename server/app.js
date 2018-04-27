@@ -19,22 +19,24 @@ app.use('/api', jwt({secret: config.get('jwt-secret')}), protectedRoutes)  //hom
 server.listen(3001)
 
 io.on('connection', (socket) => {
-  let rooms = ['general']
+  let rooms = [{roomname:'general',unreadMsgsCount: 0}]  //add msgcount here?
+  socket.emit('message', {
+    message: 'Welcome to this room'
+  })
   socket.on('join', roomInfo => {
     socket.join(roomInfo.room)
     socket.emit('update rooms', rooms)
   })
-  socket.emit('message', {
-    message: 'Welcome to this room'
-  })
   socket.on('message', data => {
     io.emit('message', data)
   })
-  socket.on('create room', room => {
-    if (!rooms.find(rm => rm === room)) {
-      rooms.push(room)
-
+  socket.on('create room', data => {
+    console.log('appjs create roomname ' + data.roomname)
+    if (!rooms.find(rm => rm.roomname === data.roomname) && data.roomname !== '') {
+      rooms.push(data)
       io.emit('update rooms', rooms)
+    } else {
+      console.log('room name already taken/no room name entered')
     }
   })
 })

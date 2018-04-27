@@ -5,8 +5,8 @@ import api from '../lib/api'
 api.new('/api')
 
 // const socket = io.connect('http://localhost:3001') //change this to connect elsewhere
-// const socket = io.connect('http://70.180.192.241:3001')
-const socket = io.connect('http://10.68.0.239:3001')
+// const socket = io.connect('http://10.68.0.239:3001')
+const socket = io.connect('http://192.168.50.34:3001')
 
 socket.emit('join', {room: store.getState().currentRoom})
 
@@ -18,7 +18,11 @@ socket.on('update rooms', rooms => {
     updateRooms(rooms)
 })
 
-export function joinRoom(room) {
+export function joinRoom(roomname, unreadMsgsCount) {
+    const room = {
+        roomname: roomname,
+        unreadMsgsCount: unreadMsgsCount
+    }
     store.dispatch({
         type: "JOIN_ROOM",
         payload: room
@@ -36,12 +40,14 @@ export function sendMessage(message) {
     const username = store.getState().userName
     const roomname = store.getState().currentRoom
     const timestamp = new Date()
+    const profile_image = store.getState().profile_image
     
     socket.emit('message', {
         username: username,
         message: message,
         roomname: roomname,
-        timestamp: timestamp
+        timestamp: timestamp,
+        profile_image: profile_image
     })
 }
 
@@ -52,8 +58,8 @@ export function updateRooms(rooms) {
     })
 }
 
-export function createRoom(room) {
-    socket.emit('create room', room)
+export function createRoom(roomname, unreadMsgsCount) {
+    socket.emit('create room', {roomname: roomname, unreadMsgsCount: unreadMsgsCount})
 }
 
 export function registration(username, password, email, fname, lname, profile_image) {
